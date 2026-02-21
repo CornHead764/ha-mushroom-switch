@@ -1,7 +1,7 @@
 import { css, CSSResultGroup, html, LitElement, nothing } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 
-const CARD_EDITOR_NAME = "mushroom-switch-card-editor";
+const CARD_EDITOR_NAME = "mushroom-switch-toggle-card-editor";
 
 const SCHEMA = [
   {
@@ -97,7 +97,7 @@ const SCHEMA = [
 ];
 
 @customElement(CARD_EDITOR_NAME)
-export class MushroomSwitchCardEditor extends LitElement {
+export class MushroomSwitchToggleCardEditor extends LitElement {
   @property({ attribute: false }) public hass: any;
 
   @state() private _config: any;

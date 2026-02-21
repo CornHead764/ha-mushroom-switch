@@ -6,7 +6,7 @@ Custom Mushroom-style cards for Home Assistant that add proper toggle switches.
 
 ## Cards
 
-### Mushroom Switch Card (`custom:mushroom-switch-card`)
+### Mushroom Switch Toggle Card (`custom:mushroom-switch-toggle-card`)
 
 A dedicated card for `switch` and `input_boolean` entities with an inline toggle switch. The layout is:
 
@@ -44,7 +44,7 @@ A light card with an inline toggle switch and optional brightness slider underne
 
 **Config options:**
 
-All options from the Switch Card above, plus:
+All options from the Switch Toggle Card above, plus:
 
 | Option | Type | Default | Description |
 |--------|------|---------|-------------|
@@ -72,7 +72,7 @@ All options from the Switch Card above, plus:
 ## Example YAML
 
 ```yaml
-type: custom:mushroom-switch-card
+type: custom:mushroom-switch-toggle-card
 entity: switch.living_room_lamp
 
 type: custom:mushroom-light-toggle-card
