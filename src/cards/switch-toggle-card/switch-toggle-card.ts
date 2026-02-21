@@ -4,17 +4,17 @@ import { classMap } from "lit/directives/class-map.js";
 import { styleMap } from "lit/directives/style-map.js";
 import { registerCard } from "../../register-card";
 
-const CARD_NAME = "mushroom-switch-card";
+const CARD_NAME = "mushroom-switch-toggle-card";
 const CARD_EDITOR_NAME = `${CARD_NAME}-editor`;
 const SWITCH_DOMAINS = ["switch", "input_boolean"];
 
 registerCard({
   type: CARD_NAME,
-  name: "Mushroom Switch Card",
+  name: "Mushroom Switch Toggle Card",
   description: "Mushroom-style card with inline toggle switch for switch entities",
 });
 
-interface SwitchCardConfig {
+interface SwitchToggleCardConfig {
   type: string;
   entity?: string;
   name?: string;
@@ -31,15 +31,15 @@ interface SwitchCardConfig {
 }
 
 @customElement(CARD_NAME)
-export class MushroomSwitchCard extends LitElement {
+export class MushroomSwitchToggleCard extends LitElement {
   @property({ attribute: false }) public hass: any;
 
-  @state() private _config?: SwitchCardConfig;
+  @state() private _config?: SwitchToggleCardConfig;
 
   @property({ reflect: true, type: String })
   public layout: string | undefined;
 
-  public static getStubConfig(hass: any): SwitchCardConfig {
+  public static getStubConfig(hass: any): SwitchToggleCardConfig {
     const entities = Object.keys(hass.states);
     const switches = entities.filter((e) =>
       SWITCH_DOMAINS.includes(e.split(".")[0])
@@ -51,11 +51,11 @@ export class MushroomSwitchCard extends LitElement {
   }
 
   public static async getConfigElement() {
-    await import("./switch-card-editor");
+    await import("./switch-toggle-card-editor");
     return document.createElement(CARD_EDITOR_NAME);
   }
 
-  setConfig(config: SwitchCardConfig): void {
+  setConfig(config: SwitchToggleCardConfig): void {
     this._config = {
       tap_action: { action: "more-info" },
       hold_action: { action: "more-info" },
@@ -304,7 +304,6 @@ export class MushroomSwitchCard extends LitElement {
       .card-content {
         display: flex;
         flex-direction: column;
-        margin: calc(-1 * var(--ha-card-border-width, 1px));
       }
       .main-row {
         display: flex;
@@ -314,6 +313,7 @@ export class MushroomSwitchCard extends LitElement {
         gap: var(--spacing);
         cursor: pointer;
         box-sizing: border-box;
+        height: 100%;
       }
       .icon-container {
         position: relative;

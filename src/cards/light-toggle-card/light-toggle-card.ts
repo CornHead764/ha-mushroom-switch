@@ -423,7 +423,6 @@ export class MushroomLightToggleCard extends LitElement {
       .card-content {
         display: flex;
         flex-direction: column;
-        margin: calc(-1 * var(--ha-card-border-width, 1px));
       }
       .main-row {
         display: flex;
@@ -433,6 +432,7 @@ export class MushroomLightToggleCard extends LitElement {
         gap: var(--spacing);
         cursor: pointer;
         box-sizing: border-box;
+        height: 100%;
       }
       .icon-container {
         position: relative;
