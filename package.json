@@ -1,0 +1,23 @@
+{
+  "name": "ha-mushroom-switch",
+  "version": "1.0.0",
+  "description": "Custom Mushroom-style switch card and light toggle card for Home Assistant",
+  "main": "index.js",
+  "scripts": {
+    "start": "rollup -c --watch --bundleConfigAsCjs",
+    "build": "rollup -c --bundleConfigAsCjs"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "lit": "^3.3.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "rollup": "^4.50.1",
+    "typescript": "^5.9.2",
+    "tslib": "^2.6.2"
+  }
+}
