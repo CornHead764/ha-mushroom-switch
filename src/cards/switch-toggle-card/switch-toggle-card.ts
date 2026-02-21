@@ -160,7 +160,7 @@ export class MushroomSwitchToggleCard extends LitElement {
 
     return html`
       <ha-card class=${classMap({ "fill-container": fillContainer })}>
-        <div class="card-content">
+        <div class="container">
           <div class="main-row" @click=${this._handleAction}>
             ${iconType !== "none"
               ? html`
@@ -213,7 +213,7 @@ export class MushroomSwitchToggleCard extends LitElement {
   private _renderNotFound() {
     return html`
       <ha-card>
-        <div class="card-content">
+        <div class="container">
           <div class="main-row">
             <div class="icon-container">
               <mushroom-shape-icon disabled>
@@ -301,7 +301,7 @@ export class MushroomSwitchToggleCard extends LitElement {
       :host([layout="grid"]) ha-card {
         height: 100%;
       }
-      .card-content {
+      .container {
         display: flex;
         flex-direction: column;
       }

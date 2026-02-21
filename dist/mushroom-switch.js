@@ -53,7 +53,7 @@ const lt=t=>(e,i)=>{void 0!==i?i.addInitializer(()=>{customElements.define(t,e)}
  * SPDX-License-Identifier: BSD-3-Clause
  */function $t(t){const e=window;e.customCards=e.customCards||[],e.customCards.push({...t,preview:!0})}const wt="mushroom-switch-toggle-card",At=`${wt}-editor`,xt=["switch","input_boolean"];$t({type:wt,name:"Mushroom Switch Toggle Card",description:"Mushroom-style card with inline toggle switch for switch entities"});let Et=class extends at{static getStubConfig(t){const e=Object.keys(t.states).filter(t=>xt.includes(t.split(".")[0]));return{type:`custom:${wt}`,entity:e[0]}}static async getConfigElement(){return await Promise.resolve().then(function(){return Tt}),document.createElement(At)}setConfig(t){this._config={tap_action:{action:"more-info"},hold_action:{action:"more-info"},...t}}getCardSize(){return 1}getLayoutOptions(){return{grid_columns:2,grid_rows:1}}getGridOptions(){return{columns:6,rows:1,min_columns:4,min_rows:1}}get _stateObj(){if(this._config&&this.hass&&this._config.entity)return this.hass.states[this._config.entity]}_isActive(t){return"unavailable"!==t.state&&"unknown"!==t.state&&"off"!==t.state}_isAvailable(t){return"unavailable"!==t.state}_handleAction(){if(!this.hass||!this._config)return;const t=this._config.tap_action?.action||"more-info";"more-info"===t?this._fireMoreInfo():"toggle"===t&&this._toggleEntity()}_fireMoreInfo(){this.dispatchEvent(new CustomEvent("hass-more-info",{composed:!0,bubbles:!0,detail:{entityId:this._config?.entity}}))}_toggleEntity(){this.hass&&this._config?.entity&&this.hass.callService("homeassistant","toggle",{entity_id:this._config.entity})}_handleToggleClick(t){t.stopPropagation(),this._toggleEntity()}render(){if(!this._config||!this.hass||!this._config.entity)return q;const t=this._stateObj;if(!t)return this._renderNotFound();const e=this._config.name||t.attributes.friendly_name||"",i=this._config.icon,s=this._isActive(t),o=this._isAvailable(t),r="on"===t.state,n=this._config.fill_container||!1,a=this._config.icon_type||"icon",c=this._config.primary_info||"name",l=this._config.secondary_info||"state",h=this._config.icon_color,d={};if(h&&s){const t=this._computeRgbColor(h);d["--icon-color"]=`rgb(${t})`,d["--shape-color"]=`rgba(${t}, 0.2)`}const g=this.hass.formatEntityState?this.hass.formatEntityState(t):t.state,p=this._computeInfoDisplay(c,e,g,t),u=this._computeInfoDisplay(l,e,g,t),m="entity-picture"===a?t.attributes.entity_picture:void 0;return V`
       <ha-card class=${ft({"fill-container":n})}>
-        <div class="card-content">
+        <div class="container">
           <div class="main-row" @click=${this._handleAction}>
             ${"none"!==a?V`
                   <div class="icon-container">
@@ -89,7 +89,7 @@ const lt=t=>(e,i)=>{void 0!==i?i.addInitializer(()=>{customElements.define(t,e)}
       </ha-card>
     `}_renderNotFound(){return V`
       <ha-card>
-        <div class="card-content">
+        <div class="container">
           <div class="main-row">
             <div class="icon-container">
               <mushroom-shape-icon disabled>
@@ -141,7 +141,7 @@ const lt=t=>(e,i)=>{void 0!==i?i.addInitializer(()=>{customElements.define(t,e)}
       :host([layout="grid"]) ha-card {
         height: 100%;
       }
-      .card-content {
+      .container {
         display: flex;
         flex-direction: column;
       }
@@ -226,7 +226,7 @@ const lt=t=>(e,i)=>{void 0!==i?i.addInitializer(()=>{customElements.define(t,e)}
       }
     `}};t([gt({attribute:!1})],Et.prototype,"hass",void 0),t([pt()],Et.prototype,"_config",void 0),t([gt({reflect:!0,type:String})],Et.prototype,"layout",void 0),Et=t([lt(wt)],Et);const St="mushroom-light-toggle-card",Ct=`${St}-editor`,kt=["light"];$t({type:St,name:"Mushroom Light Toggle Card",description:"Mushroom-style light card with inline toggle switch and brightness slider"});let Pt=class extends at{static getStubConfig(t){const e=Object.keys(t.states).filter(t=>kt.includes(t.split(".")[0]));return{type:`custom:${St}`,entity:e[0],show_brightness_control:!0}}static async getConfigElement(){return await Promise.resolve().then(function(){return It}),document.createElement(Ct)}setConfig(t){this._config={tap_action:{action:"more-info"},hold_action:{action:"more-info"},...t}}getCardSize(){return this._config?.show_brightness_control?2:1}getLayoutOptions(){return{grid_columns:2,grid_rows:this._config?.show_brightness_control?2:1}}getGridOptions(){return{columns:6,rows:this._config?.show_brightness_control?2:1,min_columns:4,min_rows:1}}get _stateObj(){if(this._config&&this.hass&&this._config.entity)return this.hass.states[this._config.entity]}_isActive(t){return"unavailable"!==t.state&&"unknown"!==t.state&&"off"!==t.state}_isAvailable(t){return"unavailable"!==t.state}updated(t){super.updated(t),this.hass&&t.has("hass")&&this._updateBrightness()}_updateBrightness(){const t=this._stateObj;t&&this._isActive(t)?this._brightness=t.attributes.brightness:this._brightness=void 0}_handleAction(){if(!this.hass||!this._config)return;const t=this._config.tap_action?.action||"more-info";"more-info"===t?this._fireMoreInfo():"toggle"===t&&this._toggleEntity()}_fireMoreInfo(){this.dispatchEvent(new CustomEvent("hass-more-info",{composed:!0,bubbles:!0,detail:{entityId:this._config?.entity}}))}_toggleEntity(){this.hass&&this._config?.entity&&this.hass.callService("homeassistant","toggle",{entity_id:this._config.entity})}_handleToggleClick(t){t.stopPropagation(),this._toggleEntity()}_handleSliderInput(t){const e=t.target;this._sliderValue=parseInt(e.value,10)}_handleSliderChange(t){const e=t.target,i=parseInt(e.value,10);this._sliderValue=void 0,this.hass&&this._config?.entity&&this.hass.callService("light","turn_on",{entity_id:this._config.entity,brightness_pct:i})}_getRGBColor(t){const e=t.attributes.rgb_color||t.attributes.rgbw_color||t.attributes.rgbww_color;return e?e.slice(0,3):void 0}render(){if(!this._config||!this.hass||!this._config.entity)return q;const t=this._stateObj;if(!t)return this._renderNotFound();const e=this._config.name||t.attributes.friendly_name||"",i=this._config.icon,s=this._isActive(t),o=this._isAvailable(t),r="on"===t.state,n=this._config.fill_container||!1,a=this._config.icon_type||"icon",c=this._config.primary_info||"name",l=this._config.secondary_info||"state",h=this._getRGBColor(t),d=this._config.icon_color,g=this._config.use_light_color,p={};if(h&&g&&s){const t=h.join(",");p["--icon-color"]=`rgb(${t})`,p["--shape-color"]=`rgba(${t}, 0.25)`}else if(d&&s){const t=this._computeRgbColor(d);p["--icon-color"]=`rgb(${t})`,p["--shape-color"]=`rgba(${t}, 0.2)`}let u=this.hass.formatEntityState?this.hass.formatEntityState(t):t.state;null!=this._brightness&&this.hass.formatEntityAttributeValue&&(u=this.hass.formatEntityAttributeValue(t,"brightness",this._brightness));const m=this._computeInfoDisplay(c,e,u,t),_=this._computeInfoDisplay(l,e,u,t),f="entity-picture"===a?t.attributes.entity_picture:void 0,b=this._sliderValue??(null!=this._brightness?Math.round(this._brightness/255*100):0),y=this._config.show_brightness_control&&s&&o,v=this._config.collapsible_controls,$=y&&(!v||s),w={};if(h&&g&&s){const t=h.join(",");w["--slider-color"]=`rgb(${t})`,w["--slider-bg-color"]=`rgba(${t}, 0.2)`}else if(d&&s){const t=this._computeRgbColor(d);w["--slider-color"]=`rgb(${t})`,w["--slider-bg-color"]=`rgba(${t}, 0.2)`}const A={};if(h&&g&&s){const t=h.join(",");A["--toggle-active-color"]=`${t}`}return V`
       <ha-card class=${ft({"fill-container":n})}>
-        <div class="card-content">
+        <div class="container">
           <div class="main-row" @click=${this._handleAction}>
             ${"none"!==a?V`
                   <div class="icon-container">
@@ -285,7 +285,7 @@ const lt=t=>(e,i)=>{void 0!==i?i.addInitializer(()=>{customElements.define(t,e)}
       </ha-card>
     `}_renderNotFound(){return V`
       <ha-card>
-        <div class="card-content">
+        <div class="container">
           <div class="main-row">
             <div class="icon-container">
               <mushroom-shape-icon disabled>
@@ -337,7 +337,7 @@ const lt=t=>(e,i)=>{void 0!==i?i.addInitializer(()=>{customElements.define(t,e)}
       :host([layout="grid"]) ha-card {
         height: 100%;
       }
-      .card-content {
+      .container {
         display: flex;
         flex-direction: column;
       }
